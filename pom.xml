@@ -10,8 +10,8 @@
 		<maven.compiler.target>17</maven.compiler.target>
 	</properties>
 	<name>java-project</name>
-	 <url>http://univ-avignon.fr</url>
-	 <build>
+	<url>http://univ-avignon.fr</url>
+	<build>
 		 <plugins>
 			 <plugin>
 				 <groupId>org.apache.maven.plugins</groupId>
@@ -19,8 +19,10 @@
 				 <version>3.10.1</version>
 			 </plugin>
 		 </plugins>
-	 </build>
-	 <dependencies>
+		 <testSourceDirectory>src/test/java</testSourceDirectory>
+		 <defaultGoal>test</defaultGoal>
+	</build>
+	<dependencies>
 		 <dependency>
 			 <groupId>org.junit.jupiter</groupId>
 			 <artifactId>junit-jupiter-api</artifactId>
@@ -33,5 +35,5 @@
 			 <version>4.4.0</version>
 			 <scope>test</scope>
 		 </dependency>
-	 </dependencies>
+	</dependencies>
 </project>
