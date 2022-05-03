@@ -11,8 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class IPokemonFactoryTest {
 
-
-    @Mock
     private IPokemonFactory pokemonFactory;
 
     @BeforeEach
