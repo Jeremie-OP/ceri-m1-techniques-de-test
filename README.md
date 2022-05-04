@@ -42,4 +42,4 @@ Pour chaque rendu, le projet dans son intégralité doit être déposé sur la p
 
 
 ## Badges Circli
-[![CircleCI](https://circleci.com/gh/Jeremie-OP/ceri-m1-techniques-de-test.svg?style=svg)](https://circleci.com/gh/Jeremie-OP/ceri-m1-techniques-de-test)
+[![CircleCI](https://circleci.com/gh/Jeremie-OP/ceri-m1-techniques-de-test.svg?style=shield)](https://circleci.com/gh/Jeremie-OP/ceri-m1-techniques-de-test)
