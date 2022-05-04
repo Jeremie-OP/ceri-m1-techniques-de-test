@@ -9,16 +9,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class IPokemonTrainerFactoryTest {
 
+    private IPokemonTrainerFactory pokemonTrainerFactory;
+
+    PokedexFactory pokedexFactory;
 
     @BeforeEach
     void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
+        pokemonTrainerFactory = new PokemonTrainerFactory();
+        pokedexFactory = new PokedexFactory();
     }
 
     @Test
     void createTrainer() {
+        PokemonTrainer trainer = pokemonTrainerFactory.createTrainer("jeanjean",Team.MYSTIC, pokedexFactory);
+        assertNotNull(trainer);
     }
 }

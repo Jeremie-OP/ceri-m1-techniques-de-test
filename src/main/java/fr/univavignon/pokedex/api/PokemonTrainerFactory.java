@@ -1,0 +1,7 @@
+package fr.univavignon.pokedex.api;
+
+public class PokemonTrainerFactory implements IPokemonTrainerFactory {
+    public PokemonTrainer createTrainer(String name, Team team, IPokedexFactory pokedexFactory) {
+        return null;
+    }
+}

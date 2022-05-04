@@ -13,14 +13,10 @@ import static org.mockito.Mockito.when;
 
 class IPokedexFactoryTest {
 
-    @Mock
     private IPokedexFactory pokedexFactory;
 
     @Mock
-    private IPokemonMetadataProvider pokemonMetadataProvider;
-
-    @Mock
-    private IPokemonFactory pokemonFactory;
+    private Pokedex pokedexMocked;
 
     @BeforeEach
     void setUp() {
@@ -29,7 +25,7 @@ class IPokedexFactoryTest {
 
     @Test
     void createPokedex() {
-        IPokedex newPokedex = pokedexFactory.createPokedex(pokemonMetadataProvider, pokemonFactory);
-        assertNotNull(newPokedex);
+        Pokedex pokedex = (Pokedex) pokedexFactory.createPokedex(pokedexMocked, pokedexMocked);
+        assertNotNull(pokedex);
     }
 }

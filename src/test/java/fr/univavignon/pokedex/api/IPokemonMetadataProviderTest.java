@@ -13,13 +13,19 @@ class IPokemonMetadataProviderTest {
 
     @BeforeEach
     void setUp() {
+        IPokedex pokedex = new Pokedex();
+        pokedex.addPokemon(new Pokemon(0,"Bulbizarre", 126,126,90,613,64,4000,4,56));
+        pokemonMetadataProvider = pokedex;
     }
 
-    @AfterEach
-    void tearDown() {
-    }
 
     @Test
     void getPokemonMetadata() {
+        assertDoesNotThrow(() -> {
+            PokemonMetadata pokemonMetadata = pokemonMetadataProvider.getPokemonMetadata(0);
+        });
+        assertThrows(PokedexException.class,() -> {
+            PokemonMetadata pokemonMetadata = pokemonMetadataProvider.getPokemonMetadata(-1);
+        });
     }
 }
