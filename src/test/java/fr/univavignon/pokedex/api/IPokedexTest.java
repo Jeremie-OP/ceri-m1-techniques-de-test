@@ -40,9 +40,8 @@ class IPokedexTest {
     @Test
     void addPokemon() {
         int result = pokedex.addPokemon(pokemon0);
-        assertEquals(pokemon0.getIndex(), result);
         result = pokedex.addPokemon(pokemon133);
-        assertEquals(pokemon133.getIndex(), result);
+        assertEquals(1, result);
     }
 
     @Test
