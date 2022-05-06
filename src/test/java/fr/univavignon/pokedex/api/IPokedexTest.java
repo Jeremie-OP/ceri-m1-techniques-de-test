@@ -23,9 +23,19 @@ class IPokedexTest {
 
     private Pokemon pokemon133;
 
+    @Mock
+    private IPokemonFactory pokemonFactory;
+    @Mock
+    private IPokemonMetadataProvider pokemonMetadataProvider;
+
     @BeforeEach
     void setUp() {
-        pokedex = new Pokedex();
+        try {
+            when(pokemonMetadataProvider.getPokemonMetadata(0)).thenReturn(new PokemonMetadata(0, "Bulbizarre", 126, 126, 90));
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        pokedex = new Pokedex(pokemonFactory, pokemonMetadataProvider);
         pokemon0 = new Pokemon(0,"Bulbizarre", 126,126,90,613,64,4000,4,56);
         pokemon133 = new Pokemon(133,"Aquali", 186,168,260,2729,202,5000,4,100);
     }
@@ -39,29 +49,29 @@ class IPokedexTest {
 
     @Test
     void addPokemon() {
-        int result = pokedex.addPokemon(pokemon0);
-        result = pokedex.addPokemon(pokemon133);
+        pokedex.addPokemon(pokemon0);
+        int result = pokedex.addPokemon(pokemon133);
         assertEquals(1, result);
+
     }
 
     @Test
     void getPokemon() throws Exception {
-        Pokemon result = pokedex.getPokemon(133);
+        int pok = pokedex.addPokemon(pokemon133);
+        assertEquals(0,pok);
+        Pokemon result = pokedex.getPokemon(pok);
         assertEquals(pokemon133, result);
     }
 
     @Test
-    void getPokemonExceptionWrongIntTest() throws Exception{
-        pokedex.getPokemon(-1);
-        assertThrows(PokedexException.class, () -> {
-        });
+    void getPokemonExceptionWrongIntTest() {
+        PokedexException thrown = assertThrows(PokedexException.class, () -> pokedex.getPokemon(-1));
+        assertTrue(thrown.getMessage().contains("pokemon"));
     }
 
     @Test
-    void getPokemonExceptionNonExistTest() throws Exception{
-        pokedex.getPokemon(5000);
-        assertThrows(PokedexException.class, () -> {
-        });
+    void getPokemonExceptionNonExistTest(){
+        assertThrows(PokedexException.class, () -> pokedex.getPokemon(5000));
     }
 
     @Test
@@ -71,9 +81,14 @@ class IPokedexTest {
     }
 
     @Test
-    void getPokemonMetadata() throws Exception {
-        PokemonMetadata result = pokedex.getPokemonMetadata(0);
-        assertNotNull(result);
+    void getPokemonMetadata() {
+        try {
+            PokemonMetadata result = pokedex.getPokemonMetadata(0);
+            assertNotNull(result);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test

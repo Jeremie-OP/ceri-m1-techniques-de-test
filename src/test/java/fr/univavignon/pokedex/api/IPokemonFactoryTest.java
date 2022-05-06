@@ -13,15 +13,12 @@ class IPokemonFactoryTest {
 
     private IPokemonFactory pokemonFactory;
 
+
     @BeforeEach
     void setUp() {
-        pokemonFactory = new Pokedex();
     }
 
     @Test
     void createPokemon() {
-        Pokemon pokemon = pokemonFactory.createPokemon(0,613,64,4000,4);
-        assertNotNull(pokemon);
-        assertEquals(pokemon.getIndex(), 0);
     }
 }
