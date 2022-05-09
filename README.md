@@ -37,9 +37,12 @@ Pour chaque rendu, le projet dans son intégralité doit être déposé sur la p
 [^1]: Si vous n’êtes vraiment pas à l’aise avec cet outil nous vous conseillons quand même vivement de vous y mettre.
 
 
-## Badges Codecov
+## Badge Codecov
 [![codecov](https://codecov.io/gh/Jeremie-OP/ceri-m1-techniques-de-test/branch/master/graph/badge.svg?token=NTCZJCDE6M)](https://codecov.io/gh/Jeremie-OP/ceri-m1-techniques-de-test)
 
 
-## Badges CircleCI
+## Badge CircleCI
 [![CircleCI](https://circleci.com/gh/Jeremie-OP/ceri-m1-techniques-de-test.svg?style=shield)](https://circleci.com/gh/Jeremie-OP/ceri-m1-techniques-de-test)
+
+## Badge Checkstyle
+[![Checkstyle](./target/site/badges/checkstyle-result.svg)]

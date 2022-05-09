@@ -12,11 +12,63 @@
 	</properties>
 	<name>java-project</name>
 	<url>http://univ-avignon.fr</url>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.1.2</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>checkstyle</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
 	<build>
 		<defaultGoal>
-			clean test
+			clean test checkstyle:checkstyle
 		</defaultGoal>
 		 <plugins>
+			 <plugin>
+				 <groupId>org.apache.maven.plugins</groupId>
+				 <artifactId>maven-checkstyle-plugin</artifactId>
+				 <version>3.1.2</version>
+				 <executions>
+					 <execution>
+						 <phase>
+							 test
+						 </phase>
+						 <goals>
+							 <goal>checkstyle</goal>
+							 <goal>checkstyle-aggregate</goal>
+						 </goals>
+					 </execution>
+				 </executions>
+			 </plugin>
+			 <plugin>
+				 <groupId>com.github.bordertech.buildtools</groupId>
+				 <artifactId>badger</artifactId>
+				 <version>1.0.0</version>
+				 <executions>
+					 <execution>
+						 <phase>test</phase>
+						 <goals>
+							 <goal>badges</goal>
+						 </goals>
+						 <configuration>
+							 <skip>${badges.skip}</skip>
+							 <outputDir>target/site/badges</outputDir>
+							 <inputFiles>
+								 <inputFile>target/checkstyle-result.xml</inputFile>
+							 </inputFiles>
+						 </configuration>
+					 </execution>
+				 </executions>
+			 </plugin>
 			 <plugin>
 				 <groupId>org.apache.maven.plugins</groupId>
 				 <artifactId>maven-compiler-plugin</artifactId>
@@ -28,11 +80,6 @@
 				 <configuration>
 					 <testFailureIgnore>true</testFailureIgnore>
 				 </configuration>
-			 </plugin>
-			 <plugin>
-				 <groupId>com.puppycrawl.tools</groupId>
-				 <artifactId>checkstyle</artifactId>
-				 <version>10.1</version>
 			 </plugin>
 			 <plugin>
 				 <groupId>org.jacoco</groupId>
@@ -71,6 +118,17 @@
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
 			<version>5.8.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-checkstyle-plugin</artifactId>
+			<version>3.1.2</version>
+			<type>maven-plugin</type>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.doxia</groupId>
+			<artifactId>doxia-site-renderer</artifactId>
+			<version>1.9.2</version>
 		</dependency>
 	</dependencies>
 </project>
