@@ -58,7 +58,6 @@ class IPokedexTest {
         pokedex.addPokemon(pokemon0);
         int result = pokedex.addPokemon(pokemon133);
         assertEquals(1, result);
-
     }
 
     @Test
