@@ -61,7 +61,7 @@
 						 </goals>
 						 <configuration>
 							 <skip>${badges.skip}</skip>
-							 <outputDir>target/site/badges</outputDir>
+							 <outputDir>./</outputDir>
 							 <inputFiles>
 								 <inputFile>target/checkstyle-result.xml</inputFile>
 							 </inputFiles>
