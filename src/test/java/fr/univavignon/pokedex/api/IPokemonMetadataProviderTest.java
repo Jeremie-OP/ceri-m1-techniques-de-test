@@ -19,11 +19,18 @@ class IPokemonMetadataProviderTest {
 
     @Test
     void getPokemonMetadata() {
-        try {
+        assertDoesNotThrow(() -> {
             PokemonMetadata metadata = pokemonMetadataProvider.getPokemonMetadata(0);
             assertEquals(0, metadata.getIndex());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
+    }
+    @Test
+    void getPokemonMetadataWrongID() {
+        assertThrows(PokedexException.class,() -> pokemonMetadataProvider.getPokemonMetadata(-1));
+    }
+
+    @Test
+    void getPokemonMetadataHighID() {
+        assertThrows(PokedexException.class,() -> pokemonMetadataProvider.getPokemonMetadata(500));
     }
 }

@@ -23,5 +23,8 @@ class IPokemonTrainerFactoryTest {
     void createTrainer() {
         PokemonTrainer trainer = pokemonTrainerFactory.createTrainer("jeanjean",Team.MYSTIC, pokedexFactory);
         assertNotNull(trainer);
+        assertEquals("jeanjean", trainer.getName());
+        assertEquals(Team.MYSTIC,trainer.getTeam());
+        assertNotNull(trainer.getPokedex());
     }
 }

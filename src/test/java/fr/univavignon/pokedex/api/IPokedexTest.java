@@ -30,11 +30,6 @@ class IPokedexTest {
 
     @BeforeEach
     void setUp() {
-        try {
-            when(pokemonMetadataProvider.getPokemonMetadata(0)).thenReturn(new PokemonMetadata(0, "Bulbizarre", 126, 126, 90));
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
         pokedex = new Pokedex(pokemonFactory, pokemonMetadataProvider);
         pokemon0 = new Pokemon(0,"Bulbizarre", 126,126,90,613,64,4000,4,56);
         pokemon133 = new Pokemon(133,"Aquali", 186,168,260,2729,202,5000,4,100);
@@ -78,29 +73,5 @@ class IPokedexTest {
     void getPokemons() {
         List<Pokemon> listPokemons = pokedex.getPokemons();
         assertNotNull(listPokemons);
-    }
-
-    @Test
-    void getPokemonMetadata() {
-        try {
-            PokemonMetadata result = pokedex.getPokemonMetadata(0);
-            assertNotNull(result);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    void getPokemonMetadataWrongIntException() throws Exception {
-        PokemonMetadata result = pokedex.getPokemonMetadata(-1);
-        assertThrows(PokedexException.class, () -> {
-        });
-    }
-    @Test
-    void getPokemonMetadataNonExistException() throws Exception {
-        PokemonMetadata result = pokedex.getPokemonMetadata(5000);
-        assertThrows(PokedexException.class, () -> {
-        });
     }
 }
