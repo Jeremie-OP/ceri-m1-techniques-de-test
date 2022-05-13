@@ -7,10 +7,6 @@ public class PokemonFactory implements IPokemonFactory {
         this.metadataProvider  = metadataProvider;
     }
 
-    public PokemonFactory(){
-        this.metadataProvider  = new PokemonMetadataProvider();
-    }
-
     public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
         try {
             PokemonMetadata pokemonMetadata = metadataProvider.getPokemonMetadata(index);
