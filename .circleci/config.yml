@@ -34,6 +34,42 @@ jobs:
       - codecov/upload:
           file: /target/site/jacoco/jacoco.xml
 
+  documentation:
+    docker:
+      - image: cimg/openjdk:17.0.3
+    steps:
+      - checkout
+      - run:
+          name: Documentation
+          command: mvn javadoc:javadoc
+      - store_artifacts:
+          path: target/site/apidocs
+          destination: docs
+      - persist_to_workspace:
+          root: target/site
+          paths:
+            - apidocs
+
+  docs-deploy:
+    docker:
+      - image: node:8.10.0
+    steps:
+      - checkout
+      - attach_workspace:
+          at: target/site/
+      - run:
+          name: Install and configure dependencies
+          command: |
+            npm install -g --silent gh-pages@2.0.1
+            git config user.email "jeremie.opigez@alumni.unvi-avignon.fr"
+            git config user.name "Jeremie-OP"
+      - add_ssh_keys:
+          fingerprints:
+            - "fd:7f:b7:20:38:e0:c3:52:ea:3f:84:77:50:8e:4e:ee"
+      - run:
+          name: Deploy docs to gh-pages branch
+          command: gh-pages --dotfiles --message "[skip ci] Updates" --dist target/site/apidocs
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
@@ -45,3 +81,15 @@ workflows:
             branches:
               only:
                 - master
+      - documentation:
+          requires:
+            - build-and-test
+          filters:
+            branches:
+              only: master
+      - docs-deploy:
+          requires:
+            - documentation
+          filters:
+            branches:
+              only: master
