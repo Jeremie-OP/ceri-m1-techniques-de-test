@@ -29,7 +29,7 @@ public class PokemonFactory implements IPokemonFactory {
                     );
         } catch (PokedexException e) {
             e.printStackTrace();
+            return new Pokemon(0,"null",0,0,0,0,0,0,0,0);
         }
-        return new Pokemon(0,"null",0,0,0,0,0,0,0,0);
     }
 }
