@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class IPokemonFactoryTest {
+class RocketPokemonFactoryTest {
 
     IPokemonFactory pokemonFactory;
 
@@ -21,7 +21,7 @@ class IPokemonFactoryTest {
     @BeforeEach
     void setUp() {
         mockedMetadataProvider =mock(IPokemonMetadataProvider.class);
-        pokemonFactory = new PokemonFactory(mockedMetadataProvider);
+        pokemonFactory = new RocketPokemonFactory();
         metadata = new PokemonMetadata(0, "Bulbizarre", 126, 126, 90);
     }
 
@@ -33,9 +33,6 @@ class IPokemonFactoryTest {
         });
         Pokemon resultPokemon = pokemonFactory.createPokemon(0,613,64,4000,4);
 
-        assertDoesNotThrow(() -> {
-            verify(mockedMetadataProvider).getPokemonMetadata(0);
-        });
 
         assertEquals(pokemon.getIndex(), resultPokemon.getIndex());
         assertEquals(pokemon.getCp(), resultPokemon.getCp());
@@ -65,8 +62,5 @@ class IPokemonFactoryTest {
         assertEquals(0, resultPokemon.getDefense());
         assertEquals("null", resultPokemon.getName());
 
-        assertDoesNotThrow(() -> {
-            verify(mockedMetadataProvider).getPokemonMetadata(-1);
-        });
     }
 }
