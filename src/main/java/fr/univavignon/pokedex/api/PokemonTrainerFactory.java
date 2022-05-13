@@ -2,7 +2,7 @@ package fr.univavignon.pokedex.api;
 
 public class PokemonTrainerFactory implements IPokemonTrainerFactory {
     public PokemonTrainer createTrainer(String name, Team team, IPokedexFactory pokedexFactory) {
-        IPokedex pokedex = pokedexFactory.createPokedex(new PokemonMetadataProvider(),new PokemonFactory());
+        IPokedex pokedex = pokedexFactory.createPokedex(new PokemonMetadataProvider(),new PokemonFactory(new PokemonMetadataProvider()));
         return new PokemonTrainer(name, team, pokedex);
     }
 }

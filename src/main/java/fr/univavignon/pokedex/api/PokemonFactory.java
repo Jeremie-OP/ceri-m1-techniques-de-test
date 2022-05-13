@@ -1,22 +1,26 @@
 package fr.univavignon.pokedex.api;
 
 public class PokemonFactory implements IPokemonFactory {
+
+    IPokemonMetadataProvider metadataProvider;
+    public PokemonFactory(IPokemonMetadataProvider metadataProvider){
+        this.metadataProvider  = metadataProvider;
+    }
     public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
-        PokemonMetadataProvider metadataProvider = new PokemonMetadataProvider();
         try {
             PokemonMetadata pokemonMetadata = metadataProvider.getPokemonMetadata(index);
             double iv = Math.random();
             return new Pokemon(
                     index,
                     pokemonMetadata.getName(),
-                    (int) ( pokemonMetadata.getAttack() + pokemonMetadata.getAttack() * iv),
-                    (int) (pokemonMetadata.getDefense() + pokemonMetadata.getDefense() * iv),
-                    (int) (pokemonMetadata.getStamina() + pokemonMetadata.getStamina() * iv),
+                    (int) ( pokemonMetadata.getAttack() + Math.round(15 * iv)),
+                    (int) ( pokemonMetadata.getDefense() + Math.round(15 * iv)),
+                    (int) ( pokemonMetadata.getStamina() + Math.round(15 * iv)),
                     cp,
                     hp,
                     dust,
                     candy,
-                    iv*100
+                    iv
                     );
         } catch (Exception e) {
             e.printStackTrace();
