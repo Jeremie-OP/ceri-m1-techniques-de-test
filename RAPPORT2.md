@@ -1,5 +1,6 @@
 # UCE Génie Logiciel Avancé : Techniques de tests
-# Rapport 1 - OPIGEZ Jérémie
+# Rapport 2 - OPIGEZ Jérémie
+https://github.com/Jeremie-OP/ceri-m1-techniques-de-test
 
 ## Introduction
 
@@ -30,10 +31,10 @@ ainsi que l'hebergement de la documentation du code.
 La qualité du code se fait via l'outil checkstyle qui une fois intégré dans le processus d'integration continue,
 permet de donner un compte rendu de la qualité de notre code.
 
-![checkstyle](./img/checkstyle.png)
+![checkstyle](https://github.com/Jeremie-OP/ceri-m1-techniques-de-test/raw/master/img/checkstyle.png)
 
 ### Badge Checkstyle
-![Checkstyle](./checkstyle-result.svg)
+![Checkstyle](https://github.com/Jeremie-OP/ceri-m1-techniques-de-test/raw/master/checkstyle-result.svg)
 
 
 Ensuite vient la generation de la javadoc du git dans le processus integration continue.
@@ -47,5 +48,5 @@ Cette partie consiste à utiliser l'implémentation founise sur nos tests. La Te
 Si ce n'est un souci vis-à-vis du PokemonMetadataProvider qui est utilisé dans mon implementation et pas dans celle de la Team Rocket
 je n'ai pas relevé de problème sur mes tests qui ont révélés les méfaits de la Team Rocket (une implémentation qui ne répond pas au specifications).
 
-![](img/rocket.png)
+![](https://github.com/Jeremie-OP/ceri-m1-techniques-de-test/raw/master/img/rocket.png)
 
